@@ -3,6 +3,7 @@
 import { jsx } from '@emotion/core';
 
 import { TodoItem } from './TodoItem';
+import { slugify } from './helpers';
 
 export function TodoList({
 	todoItems,
@@ -31,7 +32,7 @@ export function TodoList({
 				todoItems.length > 0 &&
 				todoItems.map(({ id, todo, isDone }, i) => (
 					<TodoItem
-						key={i}
+						key={slugify(`${id}-${todo}`)}
 						id={id}
 						todo={todo}
 						onRemoveTodo={onRemoveTodo}

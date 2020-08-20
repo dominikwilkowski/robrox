@@ -81,7 +81,7 @@ export function Todo() {
 					},
 				}}
 			>
-				Rox's Todo List
+				Rox's To-do List
 			</h1>
 			<AddNewTodoForm onAddTodo={addTodoHandler} />
 

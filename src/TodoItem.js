@@ -54,6 +54,7 @@ export function TodoItem({ todo, id, onRemoveTodo, onToggleTodoDone, onEditTodo,
 					padding: '0.5rem',
 					fontSize: '1.5rem',
 					background: 'transparent',
+					cursor: 'pointer',
 				}}
 			>
 				<span role="img" aria-labelledby="trash" />❌
