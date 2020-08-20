@@ -44,7 +44,7 @@ export const Checkbox = forwardRef(({ checked, onChange, onClick }, ref) => {
 						top: '0.1rem',
 						width: '0.6rem',
 						height: '1rem',
-						border: '#000 solid',
+						border: '#1e3c72 solid',
 						borderWidth: '0 4px 5px 0',
 						transform: 'rotate(45deg)',
 						opacity: 0,

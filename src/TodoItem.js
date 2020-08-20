@@ -25,7 +25,12 @@ export function TodoItem({ todo, id, onRemoveTodo, onToggleTodoDone, onEditTodo,
 	const checkboxRef = useRef(null);
 
 	return (
-		<li>
+		<li
+			css={{
+				display: 'grid',
+				gridTemplateColumns: '5rem auto 3rem',
+			}}
+		>
 			<Checkbox
 				ref={checkboxRef}
 				checked={!!isDone}
@@ -43,6 +48,7 @@ export function TodoItem({ todo, id, onRemoveTodo, onToggleTodoDone, onEditTodo,
 					fontSize: '1.5rem',
 					background: 'transparent',
 					width: '60%',
+					color: '#fff',
 					textDecoration: isDone ? 'line-through' : 'none',
 				}}
 			/>

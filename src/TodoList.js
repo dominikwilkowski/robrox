@@ -18,8 +18,6 @@ export function TodoList({
 				listStyle: 'none',
 				padding: 0,
 				margin: '0 auto',
-				display: 'grid',
-				textAlign: 'center',
 				marginTop: '1rem',
 
 				'& li:nth-child(odd)': {

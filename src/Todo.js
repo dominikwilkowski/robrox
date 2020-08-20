@@ -57,11 +57,12 @@ export function Todo() {
 	return (
 		<div
 			css={{
-				boxShadow: '0 25px 50px -12px rgba(0,0,0,.25)',
+				boxShadow: '0 25px 50px -12px rgba(0,0,0,.5)',
 				maxWidth: '37.5rem',
-				background: '#F6AD55',
+				background: 'linear-gradient(45deg, #1e3c72 0%, #2a5298 100%);',
 				margin: '3rem auto',
 				padding: '1rem',
+				color: '#fff',
 			}}
 		>
 			<h1
@@ -76,7 +77,7 @@ export function Todo() {
 						display: 'block',
 						width: '80%',
 						height: '2px',
-						background: '#000',
+						background: '#fff',
 						margin: '1rem auto',
 					},
 				}}
