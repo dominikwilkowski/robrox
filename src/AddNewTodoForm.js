@@ -50,6 +50,7 @@ export function AddNewTodoForm({ onAddTodo }) {
 						fontSize: '2rem',
 						background: 'transparent',
 						color: '#000',
+						cursor: 'pointer',
 					}}
 				>
 					Add
