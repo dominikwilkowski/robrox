@@ -12,7 +12,7 @@ ReactDOM.render(
 		<Global
 			styles={{
 				body: {
-					background: 'linear-gradient(45deg, rgba(219,219,219,1) 0%, rgba(226,226,226,1) 100%);',
+					background: 'rgba(219,219,219,1)',
 					fontFamily:
 						'system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
 					lineHeight: 1.2,
