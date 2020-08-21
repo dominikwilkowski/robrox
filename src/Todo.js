@@ -48,7 +48,6 @@ export function Todo() {
 			const editingTodo = todoItems.find((todoItem) => todoItem.id === id);
 			editingTodo.todo = todo;
 
-			setTodoItems([...todoItems]);
 			saveTodoItemsToLocalStorage('todo', todoItems);
 		},
 		[todoItems]
@@ -86,7 +85,7 @@ export function Todo() {
 					},
 				}}
 			>
-				Rox's To-do List
+				Rox's List
 			</h1>
 			<AddNewTodoForm onAddTodo={addTodoHandler} />
 

@@ -1,23 +1,37 @@
 /** @jsx jsx */
 
 import { jsx } from '@emotion/core';
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import { Checkbox } from './Checkbox';
 import { Textarea } from './Textarea';
+import { debounce } from './helpers';
 
 export function TodoItem({ todo, id, onRemoveTodo, onToggleTodoDone, onEditTodo, isDone }) {
+	const [todoVal, setTodoVal] = useState(todo);
+	const [saved, setSaved] = useState(false);
 	const removeTodoHandler = useCallback(() => onRemoveTodo(id), [id, onRemoveTodo]);
 	const toggleTodoDoneHandler = useCallback(() => onToggleTodoDone(id), [id, onToggleTodoDone]);
 
 	const editTodoHandler = useCallback(
 		(event) => {
+			const target = event.target;
+			setTodoVal(target.value);
+			setSaved(false);
+
 			if (event.keyCode === 13) {
 				event.preventDefault();
-				const { value } = event.target;
-
-				onEditTodo(id, value);
-				event.target.blur();
+				onEditTodo(id, target.value);
+				target.blur();
+				setSaved(true);
+			} else {
+				debounce({
+					func: function () {
+						onEditTodo(id, target.value);
+						setSaved(true);
+					},
+					wait: 1000,
+				})();
 			}
 		},
 		[id, onEditTodo]
@@ -39,7 +53,7 @@ export function TodoItem({ todo, id, onRemoveTodo, onToggleTodoDone, onEditTodo,
 				onChange={toggleTodoDoneHandler}
 				onClick={() => checkboxRef.current.click()}
 			/>
-			<Textarea defaultValue={todo} onKeyDown={editTodoHandler} isDone={isDone} />
+			<Textarea value={todoVal} onChange={editTodoHandler} isDone={isDone} saved={saved} />
 			<button
 				onClick={removeTodoHandler}
 				css={{
@@ -51,7 +65,9 @@ export function TodoItem({ todo, id, onRemoveTodo, onToggleTodoDone, onEditTodo,
 					cursor: 'pointer',
 				}}
 			>
-				<span role="img" aria-labelledby="trash" />❌
+				<span role="img" aria-labelledby="trash">
+					❌
+				</span>
 			</button>
 		</li>
 	);
