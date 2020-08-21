@@ -40,8 +40,8 @@ export const Checkbox = forwardRef(({ checked, onChange, onClick }, ref) => {
 					':after': {
 						content: '""',
 						position: 'absolute',
-						left: '0.6rem',
-						top: '0.1rem',
+						left: '0.75rem',
+						top: '0.4rem',
 						width: '0.6rem',
 						height: '1rem',
 						border: '#1e3c72 solid',

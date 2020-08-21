@@ -23,7 +23,13 @@ export function AddNewTodoForm({ onAddTodo }) {
 				onSubmit={handleSubmit}
 				css={{
 					display: 'grid',
-					gridTemplateColumns: 'auto 5rem',
+					gridTemplateColumns: '1fr',
+					margin: '0 1rem',
+
+					'@media(min-width: 390px)': {
+						gridTemplateColumns: 'auto 5rem',
+						margin: 0,
+					},
 				}}
 			>
 				<input
@@ -57,6 +63,7 @@ export function AddNewTodoForm({ onAddTodo }) {
 				<button
 					type="submit"
 					css={{
+						display: 'none',
 						appearance: 'none',
 						border: 'none',
 						padding: '0.5rem',
@@ -64,6 +71,10 @@ export function AddNewTodoForm({ onAddTodo }) {
 						background: 'transparent',
 						color: '#fff',
 						cursor: 'pointer',
+
+						'@media(min-width: 390px)': {
+							display: 'block',
+						},
 					}}
 				>
 					Add

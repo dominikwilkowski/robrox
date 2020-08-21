@@ -61,8 +61,12 @@ export function Todo() {
 				maxWidth: '37.5rem',
 				background: 'linear-gradient(45deg, #1e3c72 0%, #2a5298 100%);',
 				margin: '3rem auto',
-				padding: '1rem',
+				padding: '1rem 0',
 				color: '#fff',
+
+				'@media(min-width: 390px)': {
+					padding: '1rem',
+				},
 			}}
 		>
 			<h1
@@ -70,7 +74,7 @@ export function Todo() {
 					fontSize: '2.5rem',
 					fontWeight: 500,
 					textAlign: 'center',
-					marginBottom: '1.5rem',
+					margin: '1rem 1rem 1.5rem 1rem',
 
 					':after': {
 						content: '""',
