@@ -25,6 +25,19 @@ ReactDOM.render(
 				},
 			}}
 		/>
+		<img
+			src="/logo.png"
+			alt="Rob logo"
+			css={{
+				display: 'block',
+				margin: '2rem auto',
+				borderRadius: '100%',
+				height: '4.875rem',
+				weight: '4.875rem',
+				boxShadow: '0 0 2rem -0.5rem rgba(0,0,0,.6)',
+				border: '2px solid #fff',
+			}}
+		/>
 		<Todo />
 	</React.StrictMode>,
 	document.getElementById('root')
