@@ -3,9 +3,12 @@
 import { jsx } from '@emotion/core';
 import { useState } from 'react';
 
-export function AddNewTodoForm({ onAddTodo }) {
+export function MainForm({ onAddTodo }) {
 	const [value, setValue] = useState('');
 
+	/**
+	 * The handler for adding items to the list
+	 */
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		onAddTodo(value);

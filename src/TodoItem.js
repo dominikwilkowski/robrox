@@ -13,26 +13,22 @@ export function TodoItem({ todo, id, onRemoveTodo, onToggleTodoDone, onEditTodo,
 	const removeTodoHandler = useCallback(() => onRemoveTodo(id), [id, onRemoveTodo]);
 	const toggleTodoDoneHandler = useCallback(() => onToggleTodoDone(id), [id, onToggleTodoDone]);
 
+	/**
+	 * The handler for when the input changes and we may want to save the changes
+	 */
 	const editTodoHandler = useCallback(
 		(event) => {
 			const target = event.target;
 			setTodoVal(target.value);
 			setSaved(false);
 
-			if (event.keyCode === 13) {
-				event.preventDefault();
-				onEditTodo(id, target.value);
-				target.blur();
-				setSaved(true);
-			} else {
-				debounce({
-					func: function () {
-						onEditTodo(id, target.value);
-						setSaved(true);
-					},
-					wait: 1000,
-				})();
-			}
+			debounce({
+				func: function () {
+					onEditTodo(id, target.value);
+					setSaved(true);
+				},
+				wait: 1000,
+			})();
 		},
 		[id, onEditTodo]
 	);
@@ -45,6 +41,7 @@ export function TodoItem({ todo, id, onRemoveTodo, onToggleTodoDone, onEditTodo,
 				display: 'grid',
 				gridTemplateColumns: '5rem auto 3rem',
 				alignItems: 'center',
+				opacity: isDone ? 0.3 : 1,
 			}}
 		>
 			<Checkbox

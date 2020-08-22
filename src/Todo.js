@@ -3,13 +3,16 @@
 import { jsx } from '@emotion/core';
 import { useState, useCallback } from 'react';
 
-import { getTodoItemsFromLocalStorage, saveTodoItemsToLocalStorage } from './helpers';
-import { AddNewTodoForm } from './AddNewTodoForm';
-import { TodoList } from './TodoList';
+import { getTodoItems, saveTodoItems } from './helpers';
+import { MainForm } from './MainForm';
+import { TaskList } from './TaskList';
 
 export function Todo() {
-	const [todoItems, setTodoItems] = useState(getTodoItemsFromLocalStorage('todo') || []);
+	const [todoItems, setTodoItems] = useState(getTodoItems() || []);
 
+	/**
+	 * The handler for adding items to the list
+	 */
 	const addTodoHandler = useCallback(
 		(todo) => {
 			const id = todoItems.length === 0 ? 1 : todoItems[todoItems.length - 1].id + 1;
@@ -17,38 +20,47 @@ export function Todo() {
 			newTodoItems.push({ id, todo });
 
 			setTodoItems(newTodoItems);
-			saveTodoItemsToLocalStorage('todo', newTodoItems);
+			saveTodoItems(newTodoItems);
 		},
 		[todoItems]
 	);
 
+	/**
+	 * The handler for removing items from the list
+	 */
 	const removeTodoHandler = useCallback(
 		(id) => {
 			const newTodoItems = todoItems.filter((todoItem) => todoItem.id !== id);
 
 			setTodoItems(newTodoItems);
-			saveTodoItemsToLocalStorage('todo', newTodoItems);
+			saveTodoItems(newTodoItems);
 		},
 		[todoItems]
 	);
 
+	/**
+	 * The handler for checking the done checkbox
+	 */
 	const toggleTodoDoneHandler = useCallback(
 		(id) => {
 			const todo = todoItems.find((todoItem) => todoItem.id === id);
 			todo.isDone = !todo.isDone;
 
 			setTodoItems([...todoItems]);
-			saveTodoItemsToLocalStorage('todo', todoItems);
+			saveTodoItems(todoItems);
 		},
 		[todoItems]
 	);
 
+	/**
+	 * The handler for editing items on the list
+	 */
 	const editTodoHandler = useCallback(
 		(id, todo) => {
 			const editingTodo = todoItems.find((todoItem) => todoItem.id === id);
 			editingTodo.todo = todo;
 
-			saveTodoItemsToLocalStorage('todo', todoItems);
+			saveTodoItems(todoItems);
 		},
 		[todoItems]
 	);
@@ -87,9 +99,9 @@ export function Todo() {
 			>
 				Rox's List
 			</h1>
-			<AddNewTodoForm onAddTodo={addTodoHandler} />
+			<MainForm onAddTodo={addTodoHandler} />
 
-			<TodoList
+			<TaskList
 				todoItems={todoItems}
 				onRemoveTodo={removeTodoHandler}
 				onToggleTodoDone={toggleTodoDoneHandler}

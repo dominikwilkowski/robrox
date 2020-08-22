@@ -5,7 +5,7 @@ import { jsx } from '@emotion/core';
 import { TodoItem } from './TodoItem';
 import { slugify } from './helpers';
 
-export function TodoList({
+export function TaskList({
 	todoItems,
 	onRemoveTodo,
 	onToggleTodoDone,
@@ -26,20 +26,20 @@ export function TodoList({
 			}}
 		>
 			{todoItems &&
-				Array.isArray(todoItems) &&
-				todoItems.length > 0 &&
-				todoItems.map(({ id, todo, isDone }, i) => (
-					<TodoItem
-						key={slugify(`${id}-${todo}`)}
-						id={id}
-						todo={todo}
-						onRemoveTodo={onRemoveTodo}
-						onToggleTodoDone={onToggleTodoDone}
-						onEditTodo={onEditTodo}
-						isDone={isDone}
-						setCustomError={setCustomError}
-					/>
-				))}
+				todoItems
+					.sort((a, b) => (a.isDone ? 1 : a.id - b.id))
+					.map(({ id, todo, isDone }, i) => (
+						<TodoItem
+							key={slugify(`${id}-${todo}`)}
+							id={id}
+							todo={todo}
+							onRemoveTodo={onRemoveTodo}
+							onToggleTodoDone={onToggleTodoDone}
+							onEditTodo={onEditTodo}
+							isDone={isDone}
+							setCustomError={setCustomError}
+						/>
+					))}
 		</ul>
 	);
 }

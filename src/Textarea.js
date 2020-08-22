@@ -5,11 +5,25 @@ import { useEffect, useRef, forwardRef } from 'react';
 
 import { mergeRefs } from './helpers';
 
+/**
+ * Provide a function that let's you inspect an elements computed css values
+ *
+ * @param  {HTMLelement} element - The element to be inspected
+ *
+ * @return {function}            - A function that let's you query css properties parsed as integer
+ */
 function getPxFrom(element) {
 	const computed = window.getComputedStyle(element);
 	return (prop) => parseInt(computed.getPropertyValue(prop), 10);
 }
 
+/**
+ * Get the true height of a textarea without the height applied
+ *
+ * @param  {HTMLelement} field - The html element
+ *
+ * @return {string}            - The height in px
+ */
 function autoSize(field) {
 	field.style.height = 'auto';
 	const getPx = getPxFrom(field);

@@ -1,23 +1,37 @@
-export const getTodoItemsFromLocalStorage = (key) => {
-	const value = localStorage.getItem(key);
-	let todoItems = null;
+/**
+ * Retrieve our data
+ *
+ * @return {array} - An array of todo objects
+ */
+export function getTodoItems() {
+	const value = localStorage.getItem('todo');
+	let todoItems = [];
 
 	try {
-		const parsedJSON = JSON.parse(value);
-
-		if (Array.isArray(parsedJSON)) {
-			todoItems = parsedJSON;
-		}
+		todoItems = JSON.parse(value);
 	} catch (error) {
-		todoItems = [];
+		console.error(error);
 	}
 
 	return todoItems;
-};
+}
 
-export const saveTodoItemsToLocalStorage = (key, data) =>
-	localStorage.setItem(key, JSON.stringify(data));
+/**
+ * Save our data
+ *
+ * @param  {array} data - An array of todo objects
+ */
+export function saveTodoItems(data) {
+	localStorage.setItem('todo', JSON.stringify(data));
+}
 
+/**
+ * Slugify a string
+ *
+ * @param  {string} string - A string to be stripped of all unknown characters
+ *
+ * @return {string}        - The slug
+ */
 export function slugify(string) {
 	const a = 'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;';
 	const b = 'aaaaaaaaaacccddeeeeeeeegghiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------';
@@ -35,6 +49,16 @@ export function slugify(string) {
 		.replace(/-+$/, ''); // Trim - from end of text
 }
 
+/**
+ * A debounce function to call a function only once after a waiting period
+ *
+ * @param  {function} options.func      - The function to be called
+ * @param  {number}   options.wait      - The waiting period
+ * @param  {boolean}  options.immediate - To call the function on the start of the wait
+ * @param  {object}   options.args      - Any args to be passed to the function
+ *
+ * @return {[type]}                     - Returning the timeout ID
+ */
 export function debounce({ func, wait, immediate, args }) {
 	return function () {
 		if (typeof window === 'undefined') {
@@ -79,6 +103,13 @@ export function debounce({ func, wait, immediate, args }) {
 	};
 }
 
+/**
+ * Merging multiple refs
+ *
+ * @param  {array} refs - An array of all refs to be merged
+ *
+ * @return {ref}        - The resulting ref
+ */
 export function mergeRefs(refs) {
 	return (value) => {
 		refs.forEach((ref) => {

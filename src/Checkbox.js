@@ -3,7 +3,7 @@
 import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
 
-export const Checkbox = forwardRef(({ checked, onChange, onClick }, ref) => {
+export const Checkbox = forwardRef(({ checked, onChange, onClick, ...props }, ref) => {
 	return (
 		<label
 			css={{
@@ -28,6 +28,7 @@ export const Checkbox = forwardRef(({ checked, onChange, onClick }, ref) => {
 						opacity: 1,
 					},
 				}}
+				{...props}
 			/>
 			<span
 				css={{
